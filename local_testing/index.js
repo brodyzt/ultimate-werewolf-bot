@@ -93,7 +93,7 @@ function game_start() {
   send_roles();
   question_all_players();
   // Give players 5 seconds for actions
-  // Figure out better text
+  // TODO: figure out better text
   setTimeout(message_all_players, 5 * 1000, "You have 5 minutes to discover the werewolf ... Discuss!");
   setTimeout(message_all_players, 4 * 60 * 1000, "One minute left!");
   setTimeout(message_all_players, 5 * 60 * 1000, "Time up! Vote on who you think is the werewolf, no more discussing!");
