@@ -123,18 +123,18 @@ function handleMessage(sender_psid, received_message) {
           "text":"What do you want to do next?",
           "buttons":[
             {
-              "type":"web_url",
-              "url":"https://www.messenger.com",
+              "type":"postback",
+              "payload":"werewolf",
               "title":"Werewolf"
             },
             {
-              "type":"web_url",
-              "url":"https://www.messenger.com",
+              "type":"postback",
+              "payload":"seer",
               "title":"Seer"
             },
             {
-              "type":"web_url",
-              "url":"https://www.messenger.com",
+              "type":"postback",
+              "payload":"drunk",
               "title":"Drunk"
             }
           ]
@@ -154,11 +154,26 @@ function handlePostback(sender_psid, received_postback) {
   let payload = received_postback.payload;
 
   // Set the response based on the postback payload
-  if (payload === 'yes') {
-    response = { "text": "Thanks!" }
-  } else if (payload === 'no') {
-    response = { "text": "Oops, try sending another image." }
+  // if (payload === 'yes') {
+  //   response = { "text": "Thanks!" }
+  // } else if (payload === 'no') {
+  //   response = { "text": "Oops, try sending another image." }
+  // }
+
+  switch (payload) {
+    case "werewolf":
+    response = { "text": "You chose werewolf" };
+    break;
+
+    case "drunk":
+    response = { "text": "You chose drunk" };
+    break;
+
+    case "seer":
+    response = { "text": "You chose seer" };
+    break;
   }
+
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }
