@@ -212,6 +212,10 @@ function handleMessage(sender_psid, received_message) {
     }
   }
 
+  callSendAPI(sender_psid, response);
+
+}
+
   function handlePostback(sender_psid, received_postback) {
     console.log('ok')
     let response;
