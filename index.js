@@ -39,7 +39,7 @@ let users = []
 app.post('/webhook', (req, res) => {
 
   console.log("webhook request: ")
-  console.log(req);
+  // console.log(req);
 
   // Parse the request body from the POST
   let body = req.body;
@@ -112,11 +112,12 @@ function handleMessage(sender_psid, received_message) {
   let response;
 
   if (received_message.text) {
-    if (received_message.text == "join")
-    users.push(getName(sender_psid));
-    console.log(users);
-    response = {
-      "text": "Current members are " + users.join(", ")
+    if (received_message.text == "join") {
+      users.push(getName(sender_psid));
+      console.log(users);
+      response = {
+        "text": "Current members are " + users.join(", ")
+      }
     }
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
@@ -213,16 +214,16 @@ function getName(PSID) {
   var request = require("request");
 
   var options = { method: 'GET',
-    url: 'https://graph.facebook.com/' + PSID,
-    qs:
-      { fields: 'first_name,last_name',
-      access_token: PAGE_ACCESS_TOKEN },
-  };
+  url: 'https://graph.facebook.com/' + PSID,
+  qs:
+  { fields: 'first_name,last_name',
+  access_token: PAGE_ACCESS_TOKEN },
+};
 
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-    console.log(body);
-    return body.first_name;
-  });
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+  console.log(response);
+  return body.first_name;
+});
 
 }
