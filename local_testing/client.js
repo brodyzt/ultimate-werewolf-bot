@@ -80,7 +80,9 @@ async function display_question(body) {
     console.log(question_block.type);
 
     let answers = await inquirer.prompt(question_block);
+    console.log(answers);
     answers["actor"] = name;
+    answers["action"] = answers[question_block.name];
     take_action(answers);
     clear();
   });
