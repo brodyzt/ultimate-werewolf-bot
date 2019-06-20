@@ -112,11 +112,12 @@ function handleMessage(sender_psid, received_message) {
   let response;
 
   if (received_message.text) {
-    if (received_message.text == "join")
+    if (received_message.text == "join") {
     users.push(getName(sender_psid));
     console.log(users);
     response = {
       "text": "Current members are " + users.join(", ")
+      }
     }
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
