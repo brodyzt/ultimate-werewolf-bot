@@ -110,7 +110,7 @@ function handleMessage(sender_psid, received_message) {
 
   if (received_message.text) {
     if (received_message.text == "join")
-    users.push(sender_psid);
+    users.push(getName(sender_psid));
     console.log(users);
     response = {
       "text": "Current members are" + users.join(", ")
@@ -203,4 +203,23 @@ function callSendAPI(sender_psid, response) {
       console.error("Unable to send message:" + err);
     }
   });
+}
+
+
+function getName(PSID) {
+  var request = require("request");
+
+  var options = { method: 'GET',
+    url: 'https://graph.facebook.com/' + PSID,
+    qs:
+      { fields: 'first_name',
+      access_token: PAGE_ACCESS_TOKEN },
+  };
+
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    return body.first_name;
+  });
+
 }
