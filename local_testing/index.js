@@ -26,7 +26,7 @@ const questions_for_roles = {
       {
         "name": "you_a_werewolf",
         "type": "confirm",
-        "question": "You don't have to perform any actions"
+        "question": "You don't have to perform any actions."
       }
     ]
   },
@@ -93,6 +93,15 @@ const questions_for_roles = {
           "card2",
           "card3"
         ]
+      }
+    ]
+  },
+  "villager": {
+    "actions": [
+      {
+        "name": "you_a_villager",
+        "type": "confirm",
+        "question": "You don't have to perform any actions."
       }
     ]
   }
