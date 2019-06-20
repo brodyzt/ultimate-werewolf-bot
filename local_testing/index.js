@@ -10,23 +10,90 @@ const
 const hostname = 'localhost';
 const port = 3000;
 
-// const roles = ["werewolf", "seer", "drunk"];
-const roles = ["werewolf", "drunk"];
+const roles = ["werewolf", "drunk"]
+
+const num_players_to_roles = {
+  3: ["werewolf", "seer", "robber", "troublemaker", "drunk"],
+  4: ["werewolf", "seer", "robber", "troublemaker", "drunk", "villager"],
+  5: ["werewolf", "seer", "robber", "troublemaker", "drunk", "villager", "villager"]
+}
 let port_dict = {};
 
 
 const questions_for_roles = {
   "werewolf": {
-    "type": "confirm",
-    "question": "You don't have to perform any actions"
+    "actions": [
+      {
+        "name": "you_a_werewolf",
+        "type": "confirm",
+        "question": "You don't have to perform any actions"
+      }
+    ]
+  },
+  "seer": {
+    "actions": [
+      {
+        "name": "seer_pile_choice",
+        "type": "list",
+        "question": "Would you like to see two cards from the pile or the card of 1 other player?",
+        "choices": [
+          "player_card1",
+          "player_card2",
+          "2_from_pile"
+        ]
+      }
+    ]
+  },
+  "robber": {
+    "actions": [
+      {
+        "name": "robber_steal_choice",
+        "type": "list",
+        "question": "What player would you like to switch with?",
+        "choices": [
+          "player_card1",
+          "player_card2",
+          "player_card3"
+        ]
+      }
+    ]
+  },
+  "troublemaker": {
+    "actions": [
+      {
+        "name": "troublemaker_person_1",
+        "type": "list",
+        "question": "Who is the first person you want to switch?",
+        "choices": [
+          "player_card1",
+          "player_card2",
+          "player_card3"
+        ]
+      },
+      {
+        "name": "troublemaker_person_2",
+        "type": "list",
+        "question": "Who is the second person you want to switch?",
+        "choices": [
+          "player_card1",
+          "player_card2",
+          "player_card3"
+        ]
+      }
+    ]
   },
   "drunk": {
-    "type": "list",
-    "question": "Which card would you like to swap with",
-    "choices": [
-      "card1",
-      "card2",
-      "card3"
+    "actions": [
+      {
+        "name": "drunk_swap"
+        "type": "list",
+        "question": "Which card would you like to swap with?",
+        "choices": [
+          "card1",
+          "card2",
+          "card3"
+        ]
+      }
     ]
   }
 }
