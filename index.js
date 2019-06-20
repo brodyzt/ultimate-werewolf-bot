@@ -32,6 +32,9 @@ app = express().use(body_parser.json()); // creates express http server
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
+
+let users = []
+
 // Accepts POST requests at /webhook endpoint
 app.post('/webhook', (req, res) => {
 
@@ -104,6 +107,11 @@ app.get('/webhook', (req, res) => {
 
 function handleMessage(sender_psid, received_message) {
   let response;
+
+  if(received_message.text == "join") {
+    users.push(sender_psid);
+    console.log(users);
+  }
 
   // Checks if the message contains text
   if (received_message.text) {
