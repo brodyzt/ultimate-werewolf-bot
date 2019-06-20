@@ -85,7 +85,7 @@ const questions_for_roles = {
   "drunk": {
     "actions": [
       {
-        "name": "drunk_swap"
+        "name": "drunk_swap",
         "type": "list",
         "question": "Which card would you like to swap with?",
         "choices": [
