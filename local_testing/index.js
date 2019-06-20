@@ -163,6 +163,21 @@ function send_roles() {
   })
 }
 
+function determine_winner() {
+  //TODO: count votes here
+  var killed = 'placeholder';
+  var killed_party = 'placeholder';
+  //TODO: determine role here
+  if (killed_party == 'werewolf') {
+    message_all_players(killed + " was killed. " + killed + " was a werewolf, so
+    villagers win!");
+  }
+  else {
+    message_all_players(killed + " was killed. " + killed + " was not a werewolf, so
+    werewolves win!");
+  }
+}
+
 function game_start() {
   clear();
   clear_player_screens();
@@ -173,7 +188,9 @@ function game_start() {
   // TODO: figure out better text
   setTimeout(message_all_players, 5 * 1000, "You have 5 minutes to discover the werewolf ... Discuss!");
   setTimeout(message_all_players, 4 * 60 * 1000, "One minute left!");
-  setTimeout(message_all_players, 5 * 60 * 1000, "Time up! Vote on who you think is the werewolf, no more discussing!");
+  setTimeout(message_all_players, 5 * 60 * 1000, "Time's up! Vote on who you think is the werewolf, no more discussing!
+  You have one minute to vote before the game ends.");
+  setTimeout(determine_winner, 60 * 1000);
 }
 
 app.post('/receive_action', (req, res) => {
