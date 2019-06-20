@@ -38,6 +38,9 @@ let users = []
 // Accepts POST requests at /webhook endpoint
 app.post('/webhook', (req, res) => {
 
+  console.log("webhook request: ")
+  console.log(req);
+
   // Parse the request body from the POST
   let body = req.body;
 
@@ -113,7 +116,7 @@ function handleMessage(sender_psid, received_message) {
     users.push(getName(sender_psid));
     console.log(users);
     response = {
-      "text": "Current members are" + users.join(", ")
+      "text": "Current members are " + users.join(", ")
     }
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
@@ -212,13 +215,13 @@ function getName(PSID) {
   var options = { method: 'GET',
     url: 'https://graph.facebook.com/' + PSID,
     qs:
-      { fields: 'first_name',
+      { fields: 'first_name,last_name',
       access_token: PAGE_ACCESS_TOKEN },
   };
 
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
-
+    console.log(body);
     return body.first_name;
   });
 
