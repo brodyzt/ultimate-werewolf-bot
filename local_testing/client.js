@@ -75,13 +75,13 @@ app.post('/question', (req, res) => {
 
 async function display_question(body) {
   console.log(body);
-  console.log(body.questions);
-  console.log(body.type);
+  body.actions.forEach(async question_block => {
+    console.log(question_block.question);
+    console.log(question_block.type);
 
-
-  let answers = await inquirer.prompt(body.questions);
-  answers["actor"] = name;
-  clear();
-  take_action(answers);
-
+    let answers = await inquirer.prompt(question_block);
+    answers["actor"] = name;
+    take_action(answers);
+    clear();
+  });
 }
