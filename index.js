@@ -1,33 +1,33 @@
 
 /**
- * Copyright 2017-present, Facebook, Inc. All rights reserved.
- *
- * This source code is licensed under the license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * Messenger Platform Quick Start Tutorial
- *
- * This is the completed code for the Messenger Platform quick start tutorial
- *
- * https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start/
- *
- * To run this code, you must do the following:
- *
- * 1. Deploy this code to a server running Node.js
- * 2. Run `npm install`
- * 3. Update the VERIFY_TOKEN
- * 4. Add your PAGE_ACCESS_TOKEN to your environment vars
- *
- */
+* Copyright 2017-present, Facebook, Inc. All rights reserved.
+*
+* This source code is licensed under the license found in the
+* LICENSE file in the root directory of this source tree.
+*
+* Messenger Platform Quick Start Tutorial
+*
+* This is the completed code for the Messenger Platform quick start tutorial
+*
+* https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start/
+*
+* To run this code, you must do the following:
+*
+* 1. Deploy this code to a server running Node.js
+* 2. Run `npm install`
+* 3. Update the VERIFY_TOKEN
+* 4. Add your PAGE_ACCESS_TOKEN to your environment vars
+*
+*/
 
 'use strict';
 const PAGE_ACCESS_TOKEN = "EAAFpFuXqXDIBADdQePdizWJHwCxZCHVZAVmFj5E1aJk0ZBerbbZC6WuxJJ9oGEPsAziZCkyROHZCznVxuqTVZCYqT3gUKM2ddJSvZAIdlZA3CT0ZBnKuvx47aXYuilt494Q6bTOVUUE86EpvQTl0bvO9cHlZAJXXDX7eqQ4ChViyh6GaDP8zf4UX0f0syQcTlk9reAZD";
 // Imports dependencies and set up http server
 const
-  request = require('request'),
-  express = require('express'),
-  body_parser = require('body-parser'),
-  app = express().use(body_parser.json()); // creates express http server
+request = require('request'),
+express = require('express'),
+body_parser = require('body-parser'),
+app = express().use(body_parser.json()); // creates express http server
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -118,25 +118,26 @@ function handleMessage(sender_psid, received_message) {
     response = {
       "attachment": {
         "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Is this the right picture?",
-            "subtitle": "Tap a button to answer.",
-            "image_url": attachment_url,
-            "buttons": [
-              {
-                "type": "postback",
-                "title": "Yes!",
-                "payload": "yes",
-              },
-              {
-                "type": "postback",
-                "title": "No!",
-                "payload": "no",
-              }
-            ],
-          }]
+        "payload":{
+          "template_type":"button",
+          "text":"What do you want to do next?",
+          "buttons":[
+            {
+              "type":"web_url",
+              "url":"https://www.messenger.com",
+              "title":"Werewolf"
+            },
+            {
+              "type":"web_url",
+              "url":"https://www.messenger.com",
+              "title":"Seer"
+            },
+            {
+              "type":"web_url",
+              "url":"https://www.messenger.com",
+              "title":"Drunk"
+            }
+          ]
         }
       }
     }
@@ -148,7 +149,7 @@ function handleMessage(sender_psid, received_message) {
 
 function handlePostback(sender_psid, received_postback) {
   console.log('ok')
-   let response;
+  let response;
   // Get the payload for the postback
   let payload = received_postback.payload;
 

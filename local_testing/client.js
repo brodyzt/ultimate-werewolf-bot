@@ -75,17 +75,11 @@ app.post('/question', (req, res) => {
 
 async function display_question(body) {
   console.log(body);
-  console.log(body.question);
+  console.log(body.questions);
   console.log(body.type);
 
-  const questions = [{
-    type: body.type,
-    choices: body.choices,
-    name: 'action',
-    message: body.question,
-  }];
 
-  let answers = await inquirer.prompt(questions);
+  let answers = await inquirer.prompt(body.questions);
   answers["actor"] = name;
   clear();
   take_action(answers);
