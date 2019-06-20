@@ -88,6 +88,7 @@ function send_roles() {
 }
 
 function game_start() {
+  clear();
   clear_player_screens();
   message_all_players("Welcome to one night ultimate werewolf.")
   send_roles();
